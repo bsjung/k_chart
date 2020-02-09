@@ -33,7 +33,8 @@ class KChartWidget extends StatefulWidget {
   final bool isLine;
   final bool isChinese;
   final List<String> timeFormat;
-  //当屏幕滚动到尽头会调用，真为拉到屏幕右侧尽头，假为拉到屏幕左侧尽头
+  // It will be called when the screen is scrolled to the end. 
+  // It is really pulled to the right end of the screen.
   final Function(bool) onLoadMore;
   final List<Color> bgColor;
   final int fixedLength;

@@ -23,13 +23,13 @@ class ChartColors {
 
   static const Color defaultTextColor = Color(0xff60738E);
 
-  //深度颜色
+  //Color depth
   static const Color depthBuyColor = Color(0xff60A893);
   static const Color depthSellColor = Color(0xffC15866);
-  //选中后显示值边框颜色
+  //Display value border color when selected.
   static const Color selectBorderColor = Color(0xff6C7A86);
 
-  //选中后显示值背景的填充颜色
+  //Fill color of the value background when selected.
   static const Color selectFillColor = Color(0xff0D1722);
 
   static Color getMAColor(int index) {
@@ -52,24 +52,24 @@ class ChartColors {
 class ChartStyle {
   ChartStyle._();
 
-  //点与点的距离
+  //Point-to-point distance
   static const double pointWidth = 11.0;
 
-  //蜡烛宽度
+  // Candle width
   static const double candleWidth = 8.5;
 
-  //蜡烛中间线的宽度
+  //Candle midline width
   static const double candleLineWidth = 1.5;
 
-  //vol柱子宽度
+  //vol pillar width
   static const double volWidth = 8.5;
 
-  //macd柱子宽度
+  //macd pillar width
   static const double macdWidth = 3.0;
 
-  //垂直交叉线宽度
+  //Vertical cross line width
   static const double vCrossWidth = 8.5;
 
-  //水平交叉线宽度
+  //Horizontal cross line width
   static const double hCrossWidth = 0.5;
 }

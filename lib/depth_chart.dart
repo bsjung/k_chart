@@ -56,7 +56,7 @@ class _DepthChartState extends State<DepthChart> {
 }
 
 class DepthChartPainter extends CustomPainter {
-  //买入//卖出
+  //Buy / sell
   List<DepthEntity> mBuyData, mSellData;
   Offset pressOffset;
   bool isLongPress;
@@ -70,15 +70,15 @@ class DepthChartPainter extends CustomPainter {
       mBuyPointWidth,
       mSellPointWidth;
 
-  //最大的委托量
+  //Maximum commission
   double mMaxVolume, mMultiple;
 
-  //右侧绘制个数
+  //Draw the number on the right
   int mLineCount = 4;
 
   Path mBuyPath, mSellPath;
 
-  //买卖出区域边线绘制画笔  //买卖出取悦绘制画笔
+  //Buy and sell line/path border drawing brushes
   Paint mBuyLinePaint, mSellLinePaint, mBuyPathPaint, mSellPathPaint;
 
   DepthChartPainter(
@@ -138,12 +138,12 @@ class DepthChartPainter extends CustomPainter {
     mDrawHeight = size.height - mPaddingBottom;
     // canvas.drawColor(Colors.green, BlendMode.srcATop);
     canvas.save();
-    //绘制买入区域
+    //Draw buy area
     drawBuy(canvas);
-    //绘制卖出区域
+    //Draw sell area
     drawSell(canvas);
 
-    //绘制界面相关文案
+    //Interface-related copywriting
     drawText(canvas);
     canvas.restore();
   }
@@ -318,7 +318,7 @@ class DepthChartPainter extends CustomPainter {
           mSellLinePaint..style = PaintingStyle.stroke);
     }
 
-    //画底部
+    //Draw the bottom
     TextPainter priceTP =
         getTextPainter(entity.price.toStringAsFixed(fixedLength));
     priceTP.layout();
@@ -338,7 +338,7 @@ class DepthChartPainter extends CustomPainter {
         canvas,
         Offset(bottomRect.left + (bottomRect.width - priceTP.width) / 2,
             bottomRect.top + (bottomRect.height - priceTP.height) / 2));
-    //画左边
+    //Draw left
     TextPainter amountTP =
         getTextPainter(entity.vol.toStringAsFixed(fixedLength));
     amountTP.layout();
@@ -361,7 +361,7 @@ class DepthChartPainter extends CustomPainter {
             rightRect.top + (rightRect.height - amountTP.height) / 2));
   }
 
-  ///二分查找当前值的index
+  ///Find the index of the current value in binary
   int _indexOfTranslateX(double translateX, int start, int end, Function getX) {
     if (end == start || end == -1) {
       return start;
