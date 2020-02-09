@@ -42,20 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    getData('1day');
-    rootBundle.loadString('assets/depth.json').then((result) {
-      final parseJson = json.decode(result);
-      Map tick = parseJson['tick'];
-      var bids = tick['bids']
-          .map((item) => DepthEntity(item[0], item[1]))
-          .toList()
-          .cast<DepthEntity>();
-      var asks = tick['asks']
-          .map((item) => DepthEntity(item[0], item[1]))
-          .toList()
-          .cast<DepthEntity>();
-      initDepth(bids, asks);
-    });
+    //getData('1day');
+    initData('assets/btcusdt.json');
+    initDepthData('assets/depth.json');
   }
 
   void initDepth(List<DepthEntity> bids, List<DepthEntity> asks) {
@@ -64,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _asks = List();
     double amount = 0.0;
     bids?.sort((left, right) => left.price.compareTo(right.price));
-    //累加买入委托量
+    //Cumulative buy commission
     bids.reversed.forEach((item) {
       amount += item.vol;
       item.vol = amount;
@@ -73,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     amount = 0.0;
     asks?.sort((left, right) => left.price.compareTo(right.price));
-    //累加卖出委托量
+    //Cumulative sell commission
     asks?.forEach((item) {
       amount += item.vol;
       item.vol = amount;
@@ -125,17 +114,17 @@ class _MyHomePageState extends State<MyHomePage> {
     return Wrap(
       alignment: WrapAlignment.spaceEvenly,
       children: <Widget>[
-        button("分时", onPressed: () => isLine = true),
-        button("k线", onPressed: () => isLine = false),
+        button("Show Line", onPressed: () => isLine = true),
+        button("Hide Line", onPressed: () => isLine = false),
         button("MA", onPressed: () => _mainState = MainState.MA),
         button("BOLL", onPressed: () => _mainState = MainState.BOLL),
-        button("隐藏", onPressed: () => _mainState = MainState.NONE),
+        button("Hide Indicator", onPressed: () => _mainState = MainState.NONE),
         button("MACD", onPressed: () => _secondaryState = SecondaryState.MACD),
         button("KDJ", onPressed: () => _secondaryState = SecondaryState.KDJ),
         button("RSI", onPressed: () => _secondaryState = SecondaryState.RSI),
         button("WR", onPressed: () => _secondaryState = SecondaryState.WR),
-        button("隐藏副视图", onPressed: () => _secondaryState = SecondaryState.NONE),
-        button("切换中英文", onPressed: () => isChinese = !isChinese),
+        button("Hide side view", onPressed: () => _secondaryState = SecondaryState.NONE),
+        button("Switch between Chinese and English", onPressed: () => isChinese = !isChinese),
       ],
     );
   }
@@ -152,10 +141,43 @@ class _MyHomePageState extends State<MyHomePage> {
         color: Colors.blue);
   }
 
+  void initData(String json_file) {
+    rootBundle.loadString(json_file).then((result) {
+      Map parseJson = jsonDecode(result);
+      List list = parseJson['data'];
+      datas = list
+          .map((item) => KLineEntity.fromJson(item))
+          .toList()
+          .reversed
+          .toList()
+          .cast<KLineEntity>();
+      DataUtil.calculate(datas);
+      showLoading = false;
+      //setState(() {});
+    });
+  }
+
+  void initDepthData(String json_file) {
+    rootBundle.loadString(json_file).then((result) {
+      final parseJson = jsonDecode(result);
+      Map tick = parseJson['tick'];
+      var bids = tick['bids']
+          .map((item) => DepthEntity(item[0], item[1]))
+          .toList()
+          .cast<DepthEntity>();
+      var asks = tick['asks']
+          .map((item) => DepthEntity(item[0], item[1]))
+          .toList()
+          .cast<DepthEntity>();
+      initDepth(bids, asks);
+    });
+  }
+
+
   void getData(String period) {
     Future<String> future = getIPAddress('$period');
     future.then((result) {
-      Map parseJson = json.decode(result);
+      Map parseJson = jsonDecode(result);
       List list = parseJson['data'];
       datas = list
           .map((item) => KLineEntity.fromJson(item))
@@ -173,10 +195,10 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  //获取火币数据，需要翻墙
+  //To get Huobi data, you need to cross the wall
   Future<String> getIPAddress(String period) async {
     var url =
-        'https://api.huobi.br.com/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt';
+        'https://api.huobi.com/market/api/v1/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt';
     String result;
     var response = await http.get(url);
     if (response.statusCode == 200) {
