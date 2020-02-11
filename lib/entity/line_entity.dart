@@ -1,4 +1,4 @@
-import '../entity/k_entity.dart';
+import 'k_entity.dart';
 
 class KLineEntity extends KEntity {
   double open;

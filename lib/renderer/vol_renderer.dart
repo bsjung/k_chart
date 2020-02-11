@@ -1,6 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+
 import '../entity/volume_entity.dart';
 import '../renderer/base_chart_renderer.dart';
 import '../utils/number_util.dart';

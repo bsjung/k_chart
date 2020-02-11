@@ -1,4 +1,4 @@
-import '../entity/k_line_entity.dart';
+import 'line_entity.dart';
 
 class InfoWindowEntity {
   KLineEntity kLineEntity;
