@@ -18,7 +18,7 @@ abstract class BaseChartPainter extends CustomPainter {
   bool isLongPress = false;
   bool isLine = false;
 
-  //3块区域大小与位置
+  //3 block size and position
   Rect mMainRect, mVolRect, mSecondaryRect;
   double mDisplayHeight, mWidth;
   double mTopPadding = 30.0, mBottomPadding = 20.0, mChildPadding = 12.0;
@@ -94,28 +94,28 @@ abstract class BaseChartPainter extends CustomPainter {
 
   void initChartRenderer();
 
-  //画背景
+  //Painted background
   void drawBg(Canvas canvas, Size size);
 
-  //画网格
+  //Draw grid
   void drawGrid(canvas);
 
-  //画图表
+  //Draw a chart
   void drawChart(Canvas canvas, Size size);
 
-  //画右边值
+  //Draw the right text
   void drawRightText(canvas);
 
-  //画时间
+  //Draw time
   void drawDate(Canvas canvas, Size size);
 
-  //画值
+  //Draw text
   void drawText(Canvas canvas, KLineEntity data, double x);
 
-  //画最大最小值
+  //Draw maximum and minimum
   void drawMaxAndMin(Canvas canvas);
 
-  //交叉线值
+  //Cross line text
   void drawCrossLineText(Canvas canvas, Size size);
 
   void initRect(Size size) {
@@ -232,7 +232,7 @@ abstract class BaseChartPainter extends CustomPainter {
   int indexOfTranslateX(double translateX) =>
       _indexOfTranslateX(translateX, 0, mItemCount - 1);
 
-  ///二分查找当前值的index
+  ///Find the index of the current value in binary
   int _indexOfTranslateX(double translateX, int start, int end) {
     if (end == start || end == -1) {
       return start;
@@ -255,9 +255,9 @@ abstract class BaseChartPainter extends CustomPainter {
     }
   }
 
-  ///根据索引索取x坐标
-  ///+ mPointWidth / 2防止第一根和最后一根k线显示不���
-  ///@param position 索引值
+  ///Get the x coordinate based on the index
+  ///+ mPointWidth / 2 prevent the first and last k lines from showing
+  ///@param position Index value
   double getX(int position) => position * mPointWidth + mPointWidth / 2;
 
   Object getItem(int position) {
@@ -268,17 +268,17 @@ abstract class BaseChartPainter extends CustomPainter {
     }
   }
 
-  ///scrollX 转换为 TranslateX
+  ///scrollX Translate to TranslateX
   void setTranslateXFromScrollX(double scrollX) =>
       mTranslateX = scrollX + getMinTranslateX();
 
-  ///获取平移的最小值
+  ///Get the minimum value of translation
   double getMinTranslateX() {
     var x = -mDataLen + mWidth / scaleX - mPointWidth / 2;
     return x >= 0 ? 0.0 : x;
   }
 
-  ///计算长按后x的值，转换为index
+  ///Calculate the value of x after long press and convert it to index
   int calculateSelectedX(double selectX) {
     int mSelectedIndex = indexOfTranslateX(xToTranslateX(selectX));
     if (mSelectedIndex < mStartIndex) {
@@ -290,7 +290,7 @@ abstract class BaseChartPainter extends CustomPainter {
     return mSelectedIndex;
   }
 
-  ///translateX转化为view中的x
+  ///translate X to x in view
   double translateXtoX(double translateX) =>
       (translateX + mTranslateX) * scaleX;
 
