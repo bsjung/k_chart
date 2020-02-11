@@ -4,10 +4,10 @@ export 'package:flutter/material.dart'
 import 'package:flutter/material.dart'
     show Color, required, TextStyle, Rect, Canvas, Size, CustomPainter;
 
-import '../utils/date_format_util.dart';
-import '../entity/candle_entity.dart';
-import '../candle/candle_widget.dart';
-import '../candle/candle_style.dart' show ChartStyle;
+import '../../utils/date_format_util.dart';
+import '../../entity/candle_entity.dart';
+import '../../candle/candle_widget.dart';
+import '../../candle/candle_style.dart' show ChartStyle;
 
 abstract class BaseChartPainter extends CustomPainter {
   static double maxScrollX = 0.0;

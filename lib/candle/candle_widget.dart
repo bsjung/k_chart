@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../entity/info_window_entity.dart';
 import '../entity/candle_entity.dart';
-import '../renderer/chart_painter.dart';
+import '../renderer/candle/candle_renderer.dart';
 import '../utils/date_format_util.dart';
 import 'candle_style.dart';
 

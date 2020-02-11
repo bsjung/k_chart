@@ -9,3 +9,4 @@ export 'candle/candle_depth.dart'; // depth
 export 'entity/depth_entity.dart';
 
 //export 'line/line_widget.dart';  // line
+//export 'entity/line_entity.dart';
