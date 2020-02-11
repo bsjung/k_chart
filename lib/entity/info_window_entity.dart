@@ -1,4 +1,4 @@
-import 'line_entity.dart';
+import 'candle_entity.dart';
 
 class InfoWindowEntity {
   KLineEntity kLineEntity;

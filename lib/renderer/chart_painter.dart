@@ -1,10 +1,9 @@
 import 'dart:async' show StreamSink;
-
 import 'package:flutter/material.dart';
 
 import '../utils/number_util.dart';
 import '../utils/date_format_util.dart';
-import '../entity/line_entity.dart';
+import '../entity/candle_entity.dart';
 import '../entity/info_window_entity.dart';
 
 import 'base_chart_painter.dart';

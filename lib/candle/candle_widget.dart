@@ -2,10 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../entity/info_window_entity.dart';
-import '../entity/line_entity.dart';
+import '../entity/candle_entity.dart';
 import '../renderer/chart_painter.dart';
 import '../utils/date_format_util.dart';
-import 'chart_style.dart';
+import 'candle_style.dart';
 
 enum MainState { MA, BOLL, NONE }
 enum SecondaryState { MACD, KDJ, RSI, WR, NONE }

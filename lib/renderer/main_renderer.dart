@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../entity/candle_entity.dart';
+import '../entity/ohlc_entity.dart';
 import '../candle/candle_widget.dart' show MainState;
 import 'base_chart_renderer.dart';
 
-class MainRenderer extends BaseChartRenderer<CandleEntity> {
+class MainRenderer extends BaseChartRenderer<OHLCEntity> {
   double mCandleWidth = ChartStyle.candleWidth;
   double mCandleLineWidth = ChartStyle.candleLineWidth;
   MainState state;
@@ -36,7 +36,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   }
 
   @override
-  void drawText(Canvas canvas, CandleEntity data, double x) {
+  void drawText(Canvas canvas, OHLCEntity data, double x) {
     if (isLine == true) return;
     TextSpan span;
     if (state == MainState.MA) {
@@ -67,7 +67,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
     tp.paint(canvas, Offset(x, chartRect.top - topPadding));
   }
 
-  List<InlineSpan> _createMATextSpan(CandleEntity data) {
+  List<InlineSpan> _createMATextSpan(OHLCEntity data) {
     List<InlineSpan> result = [];
     for (int i = 0; i < data.maValueList.length; i++) {
       if (data.maValueList[i] != 0) {
@@ -81,7 +81,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   }
 
   @override
-  void drawChart(CandleEntity lastPoint, CandleEntity curPoint, double lastX,
+  void drawChart(OHLCEntity lastPoint, OHLCEntity curPoint, double lastX,
       double curX, Size size, Canvas canvas) {
     if (isLine != true) {
       drawCandle(curPoint, canvas, curX);
@@ -150,7 +150,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
     mLinePath.reset();
   }
 
-  void drawMaLine(CandleEntity lastPoint, CandleEntity curPoint, Canvas canvas,
+  void drawMaLine(OHLCEntity lastPoint, OHLCEntity curPoint, Canvas canvas,
       double lastX, double curX) {
     for (int i = 0; i < curPoint.maValueList.length; i++) {
       if (i == 3) {
@@ -163,7 +163,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
     }
   }
 
-  void drawBollLine(CandleEntity lastPoint, CandleEntity curPoint,
+  void drawBollLine(OHLCEntity lastPoint, OHLCEntity curPoint,
       Canvas canvas, double lastX, double curX) {
     if (lastPoint.up != 0) {
       drawLine(lastPoint.up, curPoint.up, canvas, lastX, curX,
@@ -179,7 +179,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
     }
   }
 
-  void drawCandle(CandleEntity curPoint, Canvas canvas, double curX) {
+  void drawCandle(OHLCEntity curPoint, Canvas canvas, double curX) {
     var high = getY(curPoint.high);
     var low = getY(curPoint.low);
     var open = getY(curPoint.open);

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart'
     show Color, required, TextStyle, Rect, Canvas, Size, CustomPainter;
 
 import '../utils/date_format_util.dart';
-import '../entity/line_entity.dart';
+import '../entity/candle_entity.dart';
 import '../candle/candle_widget.dart';
-import '../candle/chart_style.dart' show ChartStyle;
+import '../candle/candle_style.dart' show ChartStyle;
 
 abstract class BaseChartPainter extends CustomPainter {
   static double maxScrollX = 0.0;
