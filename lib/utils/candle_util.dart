@@ -3,7 +3,6 @@ import 'dart:math';
 import '../utils/number_util.dart';
 import '../entity/candle_entity.dart';
 
-// ignore_for_file: non_constant_identifier_names,library_prefixes,unused_import,camel_case_types
 class DataUtil {
   static calculate(List<KLineEntity> dataList,
       [List<int> maDayList = const [5, 10, 20], int n = 20, k = 2]) {
