@@ -3,7 +3,7 @@ import 'dart:math';
 import '../utils/number_util.dart';
 import '../entity/candle_entity.dart';
 
-class CandleUtil {
+class DataUtil {
   static calculate(List<KLineEntity> dataList,
       [List<int> maDayList = const [5, 10, 20], int n = 20, k = 2]) {
     calcMA(dataList, maDayList);

@@ -151,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
           .reversed
           .toList()
           .cast<KLineEntity>();
-      CandleUtil.calculate(datas);
+      DataUtil.calculate(datas);
       showLoading = false;
       //setState(() {});
     });
@@ -185,7 +185,7 @@ class _MyHomePageState extends State<MyHomePage> {
           .reversed
           .toList()
           .cast<KLineEntity>();
-      CandleUtil.calculate(datas);
+      DataUtil.calculate(datas);
       showLoading = false;
       setState(() {});
     }).catchError((_) {
