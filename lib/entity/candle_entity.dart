@@ -31,7 +31,7 @@ class KLineEntity extends KEntity {
     vol = (json['vol'] as num)?.toDouble();
     amount = (json['amount'] as num)?.toDouble();
     time = (json['time'] as num)?.toInt();
-    //兼容火币数据
+    // for Huobi data
     if (time == null) {
       time = ((json['id'] as num)?.toInt());
       if (time != null) {
